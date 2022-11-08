@@ -18,6 +18,8 @@ SELECT first_name, last_name, gender FROM employees WHERE (last_name = 'Bolotov'
 
 SELECT * FROM salaries WHERE salary NOT BETWEEN 50000 AND 100000;
 
+
+# Order By
 SELECT birth_date, hire_date FROM employees
                   WHERE birth_date NOT LIKE '195%'
                   AND hire_date NOT LIKE '199%';

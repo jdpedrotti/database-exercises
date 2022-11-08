@@ -24,5 +24,5 @@ SELECT birth_date, hire_date FROM employees
                   WHERE birth_date NOT LIKE '195%'
                   AND hire_date NOT LIKE '199%';
 
-SELECT * FROM employees WHERE birth_date LIKE '%-01';
+SELECT * FROM employees WHERE birth_date LIKE '1954%-01' ORDER BY birth_date, last_name LIMIT 50 OFFSET 50;
 

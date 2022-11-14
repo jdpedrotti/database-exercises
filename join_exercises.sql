@@ -1,10 +1,10 @@
 USE employees;
 
 SELECT CONCAT(e.first_name, ' ', e.last_name) AS full_name, d.dept_name
-FROM employees as e
-         JOIN dept_emp as de
+FROM employees AS e
+         JOIN dept_emp AS de
               ON de.emp_no = e.emp_no
-         JOIN departments as d
+         JOIN departments AS d
               ON d.dept_no = de.dept_no
 WHERE de.to_date = '9999-01-01';
 
@@ -35,30 +35,32 @@ SELECT DISTINCT title FROM titles;
 SELECT titles.title AS TITLE, COUNT(title) AS TOTAL
     FROM titles
     JOIN dept_emp ON titles.emp_no = dept_emp.emp_no
-    JOIN departments name on dept_emp.dept_no = name.dept_no
-    WHERE titles.to_date LIKE '9999%' AND name.dept_name = 'Customer Service'
+    JOIN departments name ON dept_emp.dept_no = name.dept_no
+    WHERE titles.to_date LIKE '9999%'
+    AND dept_emp.to_date LIKE '9%'
+    AND name.dept_name = 'Customer Service'
     GROUP BY titles.title, title;
 
 
 #Find the current salary of all current managers.
 SELECT DISTINCT d.dept_name AS Deparment_Name, CONCAT(e.first_name, ' ', e.last_name) AS Deparment_Manager, s.salary AS Salary
-    FROM employees as e
-    JOIN dept_manager as de ON de.emp_no = e.emp_no
-    JOIN departments as d ON d.dept_no = de.dept_no
-    JOIN salaries as s ON e.emp_no = s.emp_no
+    FROM employees AS e
+    JOIN dept_manager AS de ON de.emp_no = e.emp_no
+    JOIN departments AS d ON d.dept_no = de.dept_no
+    JOIN salaries AS s ON e.emp_no = s.emp_no
     WHERE de.to_date = '9999-01-01' AND s.to_date = '9999-01-01'
-    ORDER BY d.dept_name asc;
+    ORDER BY d.dept_name ASC;
 
 
 #Bonus Find the names of all current employees, their department name, and their current manager's name
 SELECT CONCAT(e.first_name, ' ',e.last_name) AS Employee, d.dept_name AS Department, CONCAT(m.first_name, ' ', m.last_name) AS Manager
     FROM employees e
     LEFT JOIN dept_emp AS de ON e.emp_no = de.emp_no
-    LEFT JOIN departments d on de.dept_no = d.dept_no
-    LEFT JOIN dept_manager dm on d.dept_no = dm.dept_no
-    JOIN employees AS m on dm.emp_no = m.emp_no
+    LEFT JOIN departments d ON de.dept_no = d.dept_no
+    LEFT JOIN dept_manager dm ON d.dept_no = dm.dept_no
+    JOIN employees AS m ON dm.emp_no = m.emp_no
     WHERE de.to_date = '9999-01-01' AND dm.to_date = '9999-01-01'
-    ORDER BY dept_name asc;
+    ORDER BY dept_name ASC;
 
 
 
